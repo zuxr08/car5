@@ -1,0 +1,156 @@
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Эпичные Машины</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-image: url('https://wallpaperscraft.ru/wallpaper/avtomobil_kontsept_trehmernyj_133624');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: white;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3em;
+      margin-top: 20px;
+      text-shadow: 2px 2px 8px black;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px;
+    }
+    .card {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      overflow: hidden;
+      width: 300px;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .caption {
+      padding: 15px;
+      font-weight: bold;
+    }
+    .button {
+      margin-bottom: 15px;
+      background-color: #ff1744;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1em;
+      border-radius: 20px;
+    }
+    .button:hover {
+      background-color: #ff4569;
+    }
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .popup img {
+      max-width: 90%;
+      max-height: 60vh;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .popup.hidden {
+      display: none;
+    }
+    .popup-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 3em;
+      color: white;
+      cursor: pointer;
+    }
+    .popup-info {
+      color: white;
+      font-size: 1.2em;
+      max-width: 80%;
+      text-shadow: 1px 1px 4px black;
+    }
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  </style>
+</head>
+<body>
+
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-epic.mp3" type="audio/mpeg">
+  </audio>
+
+  <h1>ЭПИЧНЫЕ МАШИНЫ</h1>
+
+  <div class="gallery">
+    <div class="card">
+      <img src="https://images.wallpaperscraft.ru/image/single/bmw_fary_avtomobil_124112_3840x2160.jpg" alt="BMW F80 Night">
+      <div class="caption">BMW F80 — ночной зверь</div>
+      <button class="button" onclick="showPopup('https://images.wallpaperscraft.ru/image/single/bmw_fary_avtomobil_124112_3840x2160.jpg', 'Двигатель: 3.0L I6 Twin-Turbo, 425 л.с.\nМакс. скорость: 250 км/ч\nРазгон 0–100 км/ч: 4.1 сек')">Узнать больше</button>
+    </div>
+    <div class="card">
+      <img src="https://images.wallpaperscraft.ru/image/single/lamborghini_mashina_sportkar_146392_3840x2160.jpg" alt="Lamborghini Sport">
+      <div class="caption">Lamborghini — спорт и элегантность</div>
+      <button class="button" onclick="showPopup('https://images.wallpaperscraft.ru/image/single/lamborghini_mashina_sportkar_146392_3840x2160.jpg', 'Двигатель: V12 6.5L, 770 л.с.\nМакс. скорость: 350 км/ч\nРазгон 0–100 км/ч: 2.8 сек')">Узнать больше</button>
+    </div>
+    <div class="card">
+      <img src="https://images.wallpaperscraft.ru/image/single/mclaren_p1_mclaren_avtomobil_216577_5184x3456.jpg" alt="McLaren P1">
+      <div class="caption">McLaren P1 — будущее на колёсах</div>
+      <button class="button" onclick="showPopup('https://images.wallpaperscraft.ru/image/single/mclaren_p1_mclaren_avtomobil_216577_5184x3456.jpg', 'Двигатель: 3.8L V8 + электродвигатель, 903 л.с.\nМакс. скорость: 350 км/ч\nРазгон 0–100 км/ч: 2.6 сек')">Узнать больше</button>
+    </div>
+    <div class="card">
+      <img src="https://wallpaperscraft.ru/image/porsche_avtomobil_sportkar_212188.jpg" alt="Porsche">
+      <div class="caption">Porsche — элегантность и мощь</div>
+      <button class="button" onclick="showPopup('https://wallpaperscraft.ru/image/porsche_avtomobil_sportkar_212188.jpg', 'Двигатель: 3.0L Twin-Turbo H6, 443 л.с.\nМакс. скорость: 308 км/ч\nРазгон 0–100 км/ч: 3.5 сек')">Узнать больше</button>
+    </div>
+  </div>
+
+  <div id="popup" class="popup hidden">
+    <span class="popup-close" onclick="hidePopup()">&times;</span>
+    <img id="popup-img" src="" alt="Большая машина">
+    <div class="popup-info" id="popup-info"></div>
+  </div>
+
+  <footer>© 2025 Эпичные Машины. Впечатляйся громко.</footer>
+
+  <script>
+    function showPopup(src, info) {
+      document.getElementById('popup-img').src = src;
+      document.getElementById('popup-info').textContent = info;
+      document.getElementById('popup').classList.remove('hidden');
+    }
+
+    function hidePopup() {
+      document.getElementById('popup').classList.add('hidden');
+    }
+  </script>
+
+</body>
